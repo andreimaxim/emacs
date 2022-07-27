@@ -2,8 +2,6 @@
 #+AUTHOR: Andrei Maxim
 #+PROPERTY: header-args :tangle yes
 
-* Emacs Configuration
-
 #+BEGIN_QUOTE
 I use emacs, which might be thought of as a thermonuclear word processor.
 -- Neal Stephenson
