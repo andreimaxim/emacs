@@ -1,0 +1,13 @@
+#+TITLE: Emacs Configuration
+#+AUTHOR: Andrei Maxim
+#+PROPERTY: header-args :tangle yes
+
+* Emacs Configuration
+
+#+BEGIN_QUOTE
+I use emacs, which might be thought of as a thermonuclear word processor.
+-- Neal Stephenson
+#+END_QUOTE
+
+A simple configuration file that is supposed to enhance the editing experience of a
+Ruby on Rails developer without departing too much from the Emacs ethos.
