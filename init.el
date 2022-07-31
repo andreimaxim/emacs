@@ -303,6 +303,10 @@
 
 ;;; Programming
 
+(use-package display-line-numbers
+  :ensure nil
+  :hook (prog-mode . display-line-numbers-mode))
+
 ;; The default electric-indent will indent only on return, which feels a bit
 ;; too late.
 (use-package aggressive-indent
