@@ -29,7 +29,35 @@
 
 (require 'use-package)
 
+;; Byte-compiled Elisp-modules should be automatically queued for native
+;; compilation.
+(setq native-comp-deferred-compilation t)
+
 ;;; Better defaults
+
+;; No tabs
+(setq-default indent-tabs-mode nil)
+
+;; Tab space equivalence
+(setq-default tab-width 2)
+
+;; Buffer encoding
+(prefer-coding-system       'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-language-environment   'utf-8)
+
+;; By default, Emacs centers the point vertically whenever the point goes
+;; off the screen, which is different to what everything else does (see
+;; `Automatic Scrolling' in the manual).
+;;
+;; Setting `scroll-conservatively' to a value over 100, automatic scrolling
+;; does not center the point.
+(setq scroll-conservatively 101)
+
+;; Use the visual bell instead of a sound
+(setq-default visible-bell t)
 
 ;; No file dialog
 (setq use-file-dialog nil)
@@ -39,22 +67,6 @@
 
 ;; No popup windows
 (setq pop-up-windows nil)
-
-;; No tabs
-(setq-default indent-tabs-mode nil)
-
-;; Tab space equivalence
-(setq-default tab-width 4)
-
-;; Buffer encoding
-(prefer-coding-system       'utf-8)
-(set-default-coding-systems 'utf-8)
-(set-terminal-coding-system 'utf-8)
-(set-keyboard-coding-system 'utf-8)
-(set-language-environment   'utf-8)
-
-;; Use the visual bell instead of a sound
-(setq-default visible-bell t)
 
 ;; Always show information regarding the current column
 (setq column-number-mode t)
@@ -80,7 +92,6 @@
 ;; No menu bar
 (menu-bar-mode -1)
 
-
 ;; Navigate windows using shift+direction
 (windmove-default-keybindings)
 
@@ -89,8 +100,22 @@
 ;; Use the new scroll mode which should be smoother on Emacs 29+
 (pixel-scroll-precision-mode t)
 
+;; Do not create any backups as any text that's worth a backup will be stored
+;; in git or something similar.
+(setq make-backup-files nil)
+
 ;; Autorefresh buffers
 (global-auto-revert-mode 1)
+
+;; Remember recently edited files
+(recentf-mode 1)
+
+;; Save what you enter into minibuffer prompts
+(setq history-length 25)
+(savehist-mode 1)
+
+;; Remember and restore the last cursor location of opened files
+(save-place-mode 1)
 
 ;; No startup  screen
 (setq inhibit-startup-screen t)
@@ -109,39 +134,31 @@
 (setq frame-title-format nil)
 
 ;;; UI tweaks
-;; The tsdh-light theme is built into Emacs and it's slightly better
-;; than the default theme.
-(load-theme 'tsdh-light)
 
-;; Add a bit of padding on all sides
-(modify-all-frames-parameters
- '((internal-border-width . 20)))
+(use-package leuven-theme
+  :ensure t
+  :config
+  (load-theme 'leuven t))
 
-;; A lot of themes will show vertical bars of a slightly different color due
-;; to the extra padding added above.
-(dolist (face '(window-divider
-		        window-divider-first-pixel
-		        window-divider-last-pixel))
-  (face-spec-reset-face face)
-  (set-face-foreground face (face-attribute 'default :background)))
-(set-face-background 'fringe (face-attribute 'default :background))
+;; Lower the contrast for line numbers
+(set-face-foreground 'line-number "gray90")
 
 ;;; Fonts
 ;;
-;; The block below assumes that the following two Iosevka fonts are instaled:
-;; * Iosevka Term ss08 (the PragmataPro variant)
-;; * Iosevka Aile
+;; The PragmataPro font with adition OTF files should be already installed.
 ;;
-;; Iosevka Term is used because it's slightly narrower than the default Iosevka,
-;; while the Aile is used for non-monospace text.
-(set-face-attribute 'default nil :family "Iosevka Term SS08" :height 135)
-(set-face-attribute 'fixed-pitch nil :family "Iosevka Term SS08")
-(set-face-attribute 'variable-pitch nil :family "Iosevka Aile")
+;; An free alternative is Iosevka Term SS08 for default and fixed-pitch faces,
+;; and Iosevka Aile for non-monospace text.
+(set-face-attribute 'default nil :family "PragmataPro Mono Liga" :height 120)
+(set-face-attribute 'fixed-pitch nil :font "PragmataPro Mono Liga")
+(set-face-attribute 'variable-pitch nil :family "PragmataPro Mono Liga")
 
-;; Smaller text size alternative
-;; (set-face-attribute 'default nil :family "PragmataPro Mono Liga" :height 120)
-;; (set-face-attribute 'fixed-pitch nil :family "PragmataPro Mono Liga" :height 120)
-;; (set-face-attribute 'variable-pitch nil :family "Iosevka Aile")
+;;; The ligature support is not distributed as a package on ELPA or MELPA
+(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
+
+(use-package pragmatapro-lig
+  :ensure nil
+  :hook (prog-mode . pragmatapro-lig-mode))
 
 ;; Highlight the current line
 (use-package hl-line
@@ -158,11 +175,14 @@
   :ensure nil
   :init (savehist-mode))
 
+;; Does not work with Emacs older than 29.1
+(use-package paren
+  :hook (prog-mode . show-paren-mode)
+  :custom (show-paren-context-when-offscreen 'overlay))
 
-;; Cleaner modeline
-(use-package mood-line
-  :ensure t
-  :init (mood-line-mode))
+ (use-package doom-modeline
+   :ensure t
+   :hook (after-init . doom-modeline-mode))
 
 ;; Remove modes from modeline
 (use-package diminish
@@ -170,14 +190,6 @@
   :init
   (diminish 'rainbow-mode)
   (diminish 'eldoc-mode))
-
-(use-package kind-icon
-  :ensure t
-  :after corfu
-  :custom
-  (kind-icon-default-face 'corfu-default)
-  :config
-  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
 ;;; UX improvements
 
@@ -187,25 +199,15 @@
 ;; packages that rely on the default Emacs functionality instead of reinventing
 ;; the wheel.
 
+(use-package dired
+  :ensure nil
+  :hook (dired-mode . dired-hide-details-mode))
+
 ;; Whenever you enter an incomplete command (say `C-x p'), which-key will show
 ;; in the minibuffer the available key bindings that follow `C-x p'.
 (use-package which-key
   :ensure t
   :config (which-key-mode))
-
-;; Easily switch between multiple windows using M-o
-(use-package ace-window
-  :ensure t
-  :bind (("M-o" . ace-window)))
-
-;; A much more polished dired experience
-(use-package dirvish
-  :ensure t
-  :init
-  ;; Let Dirvish take over Dired globally
-  (dirvish-override-dired-mode)
-  :bind
-  ("C-x d" . dirvish))
 
 (use-package vertico
   :ensure t
@@ -218,26 +220,73 @@
 
 (use-package orderless
   :ensure t
-  :init
-  ;; Tune the global completion style settings to your liking!
-  ;; This affects the minibuffer and non-lsp completion at point.
-  (setq completion-styles '(orderless flex)
-	    completion-category-overrides '((eglot (styles . (orderless flex))))))
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion)))))
 
 (use-package corfu
   :ensure t
-  ;; :custom
-  ;; (corfu-separator ?_) ;; Set to orderless separator, if not using space
+  ;; Optional customizations
   :custom
-  (corfu-auto t)
-  (corfu-auto-delay 0.5)
-  (corfu-auto-prefix 1)
-  (corfu-preview-current nil)
-  :bind
-  ;; Configure SPC for separator insertion
-  (:map corfu-map ("SPC" . corfu-insert-separator))
+  ;; (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
+  (corfu-auto t)                 ;; Enable auto completion
+  (corfu-auto-delay 1)
+  (corfu-auto-prefix 3)
+  ;; (corfu-separator ?\s)          ;; Orderless field separator
+  ;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
+  ;; (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
+  ;; (corfu-preview-current nil)    ;; Disable current candidate preview
+  ;; (corfu-preselect-first nil)    ;; Disable candidate preselection
+  ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
+  ;; (corfu-echo-documentation nil) ;; Disable documentation in the echo area
+  ;; (corfu-scroll-margin 5)        ;; Use scroll margin
+
+  ;; Enable Corfu only for certain modes.
+  ;; :hook ((prog-mode . corfu-mode)
+  ;;        (shell-mode . corfu-mode)
+  ;;        (eshell-mode . corfu-mode))
+
+  ;; Recommended: Enable Corfu globally.
+  ;; This is recommended since Dabbrev can be used globally (M-/).
+  ;; See also `corfu-excluded-modes'.
   :init
   (global-corfu-mode))
+
+(use-package cape
+  :ensure t
+  ;; Bind dedicated completion commands
+  ;; Alternative prefix keys: C-c p, M-p, M-+, ...
+  :bind (("C-c p p" . completion-at-point) ;; capf
+         ("C-c p t" . complete-tag)        ;; etags
+         ("C-c p d" . cape-dabbrev)        ;; or dabbrev-completion
+         ("C-c p h" . cape-history)
+         ("C-c p f" . cape-file)
+         ("C-c p k" . cape-keyword)
+         ("C-c p s" . cape-symbol)
+         ("C-c p a" . cape-abbrev)
+         ("C-c p i" . cape-ispell)
+         ("C-c p l" . cape-line)
+         ("C-c p w" . cape-dict)
+         ("C-c p \\" . cape-tex)
+         ("C-c p _" . cape-tex)
+         ("C-c p ^" . cape-tex)
+         ("C-c p &" . cape-sgml)
+         ("C-c p r" . cape-rfc1345))
+  :init
+  ;; Add `completion-at-point-functions', used by `completion-at-point'.
+  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+  (add-to-list 'completion-at-point-functions #'cape-file)
+  ;;(add-to-list 'completion-at-point-functions #'cape-history)
+  ;;(add-to-list 'completion-at-point-functions #'cape-keyword)
+  ;;(add-to-list 'completion-at-point-functions #'cape-tex)
+  ;;(add-to-list 'completion-at-point-functions #'cape-sgml)
+  ;;(add-to-list 'completion-at-point-functions #'cape-rfc1345)
+  ;;(add-to-list 'completion-at-point-functions #'cape-abbrev)
+  ;;(add-to-list 'completion-at-point-functions #'cape-ispell)
+  ;;(add-to-list 'completion-at-point-functions #'cape-dict)
+  ;;(add-to-list 'completion-at-point-functions #'cape-symbol)
+  ;;(add-to-list 'completion-at-point-functions #'cape-line)
+  )
 
 ;; Consult provides complex actions based on whatever was typed:
 ;; jump to buffer, open a new window, open a buffer in the project, etc.
@@ -301,6 +350,15 @@
   :hook (completion-list-mode . consult-preview-at-point-mode)
   )
 
+(use-package kind-icon
+  :ensure t
+  :after corfu
+  :custom
+  (kind-icon-default-face 'corfu-default)
+  :config
+  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
+
+
 ;;; Programming
 
 (use-package display-line-numbers
@@ -317,6 +375,7 @@
 ;; Automatically fix whitespaces, but only the ones we've changed.
 (use-package ws-butler
   :ensure t
+  :diminish t
   :hook (prog-mode . ws-butler-mode))
 
 ;; Parse-tree-based syntax highlighting.
@@ -334,7 +393,6 @@
 (use-package magit
   :ensure t)
 
-
 ;; Flycheck seems to have a better UI than Flymake when it comes to reporting
 ;; errors.
 (use-package flycheck
@@ -346,39 +404,45 @@
   (setq-default flycheck-disabled-checkers '(ruby-rubylint ruby-reek))
   (setq flycheck-emacs-lisp-load-path 'inherit))
 
-
-;; Better shell within Emacs.
-;; Requires libtool-bin system package.
-(use-package vterm
-  :ensure t
-  :custom
-  (vterm-always-compile-module t))
-
-
 (use-package yasnippet
   :ensure t
-  :hook  (prog-mode . yas-minor-mode))
+  :diminish t
+  :hook  ((prog-mode org-mode) . yas-minor-mode))
 
 (use-package yasnippet-snippets
+  :ensure t
+  :diminish t)
+
+(use-package smartparens
+  :ensure t)
+
+(use-package enh-ruby-mode
   :ensure t)
 
 (use-package devdocs
   :ensure t
   :config
-  (global-set-key (kbd "C-h D") 'devdocs-lookup))
-
-(use-package yaml-mode
-  :ensure t)
-
-(use-package markdown-mode
-  :ensure t)
+  (global-set-key (kbd "C-h D") 'devdocs-lookup)
+  (setq devdocs-current-docs '("ruby~3.1" "rails~7.0")))
 
 (use-package yard-mode
   :ensure t
   :diminish
-  :hook (ruby-mode . yard-mode))
+  :hook (enh-ruby-mode . yard-mode))
 
 (use-package web-mode
+  :ensure t
+  :mode
+  (".liquid")
+  :custom
+  (web-mode-enable-front-matter-block t))
+
+;; Connect an Emacs REPL buffer to a Ruby subprocess.
+(use-package inf-ruby
+  :ensure t
+  :hook (enh-ruby-mode . inf-ruby-minor-mode))
+
+(use-package yaml-mode
   :ensure t)
 
 (use-package json-mode
@@ -386,19 +450,34 @@
   :config
   (setq js-indent-level 2))
 
-;; Provides `bundle-install' and `bundle-update' functions to install and
-;; update bundles.
-(use-package bundler
+(use-package markdown-mode
   :ensure t)
-
-;; Connect an Emacs REPL buffer to a Ruby subprocess.
-(use-package inf-ruby
-  :ensure t
-  :hook (ruby-mode . inf-ruby-minor-mode))
 
 ;; For UUIDv4 generation
 (use-package uuidgen
   :ensure t)
+
+;; Recommended settings from org-modern-mode
+(use-package org
+  :ensure t
+  :config
+  (setq
+   ;; Edit settings
+   org-auto-align-tags nil
+   org-tags-column 0
+   org-catch-invisible-edits 'show-and-error
+   org-special-ctrl-a/e t
+   org-insert-heading-respect-content t
+
+   ;; Org styling, hide markup etc.
+   org-hide-emphasis-markers t
+   org-pretty-entities t
+   org-ellipsis "…"))
+
+;; Better UI for Org
+(use-package org-modern
+  :ensure t
+  :hook (org-mode . org-modern-mode))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -406,20 +485,19 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(dash-docs devdocs eglot which-key robe org yasnippet-snippets yard-mode yaml-mode ws-butler web-mode vterm vertico uuidgen use-package tree-sitter-langs rainbow-delimiters org-modern orderless mood-line marginalia magit lsp-mode kind-icon json-mode flycheck dirvish diminish corfu consult bundler all-the-icons aggressive-indent ace-window))
- '(safe-local-variable-values '((setq devdocs-current-docs '("ruby~3.1")))))
+   '(all-the-icons doom-modeline leuven-theme ligature ligatures ef-themes projectile-rails smartparens-ruby smartparens enh-ruby-mode faff-theme zenburn-theme kaolin-themes sqlformat docker org-modern yasnippet-snippets yard-mode yaml-mode ws-butler vterm vertico uuidgen tree-sitter-langs orderless mood-line markdown-mode marginalia kind-icon json-mode diminish corfu bundler ace-window))
+ '(safe-local-variable-values
+   '((setq-local devdocs-current-docs quote
+                 ("ruby~3.1" "rails~7.0"))
+     (eval setq-local devdocs-current-docs
+           '("ruby~3.1" "rails~7.0"))
+     (eval setq-local devdocs-current-docs
+           '("ruby~3.1, rails~7.0"))
+     (eval setq-local devdocs-current-docs
+           '("ruby~3.1")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
-(custom-set-icons
- ;; custom-set-icons was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-
-

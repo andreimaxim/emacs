@@ -2,10 +2,31 @@
 #+AUTHOR: Andrei Maxim
 #+PROPERTY: header-args :tangle yes
 
-#+BEGIN_QUOTE
-I use emacs, which might be thought of as a thermonuclear word processor.
--- Neal Stephenson
-#+END_QUOTE
+This file uses [[https://en.wikipedia.org/wiki/Literate_programming][literate programming]] promoted by Donald E. Knuth.
 
-A simple configuration file that is supposed to enhance the editing experience of a
-Ruby on Rails developer without departing too much from the Emacs ethos.
+#+begin_src emacs-lisp :tangle no
+  (require 'org)
+  (org-babel-load-file (expand-file-name "README.org" user-emacs-directory))
+#+end_src
+
+** Setup
+
+#+begin_example
+  $ git clone https://git.savannah.gnu.org/git/emacs.git
+  $ ./autogen.sh
+  $ ./configure --with-native-compilation --with-json
+  $ make -j$(nproc)
+  $ sudo make install
+#+end_example
+
+
+** Programming
+
+*** DevDocs
+
+Add this to a =dir-locals.el= file in the project root to have =devdocs=
+automatically search through Ruby 3.1 and Ruby on Rails 7.0 documentation:
+
+#+begin_src emacs-lisp :tangle yes
+  ((ruby-mode . ((eval . (setq-local devdocs-current-docs '("ruby~3.1" "rails~7.0"))))))
+#+end_src
