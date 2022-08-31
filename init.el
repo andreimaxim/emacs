@@ -134,7 +134,6 @@
 (setq frame-title-format nil)
 
 ;;; UI tweaks
-
 (use-package leuven-theme
   :ensure t
   :config
@@ -180,9 +179,11 @@
   :hook (prog-mode . show-paren-mode)
   :custom (show-paren-context-when-offscreen 'overlay))
 
- (use-package doom-modeline
-   :ensure t
-   :hook (after-init . doom-modeline-mode))
+(use-package doom-modeline
+  :ensure t
+  :hook (after-init . doom-modeline-mode)
+  :custom
+  (doom-modeline-buffer-file-name-style 'relative-to-project))
 
 ;; Remove modes from modeline
 (use-package diminish
@@ -393,17 +394,6 @@
 (use-package magit
   :ensure t)
 
-;; Flycheck seems to have a better UI than Flymake when it comes to reporting
-;; errors.
-(use-package flycheck
-  :ensure t
-  :init (global-flycheck-mode)
-  :config
-  ;; Disable ruby-rubylint as it's no longer maintained and reek because it
-  ;; adds little value over Rubocop.
-  (setq-default flycheck-disabled-checkers '(ruby-rubylint ruby-reek))
-  (setq flycheck-emacs-lisp-load-path 'inherit))
-
 (use-package yasnippet
   :ensure t
   :diminish t
@@ -484,8 +474,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "e3a1b1fb50e3908e80514de38acbac74be2eb2777fc896e44b54ce44308e5330" "c8b83e7692e77f3e2e46c08177b673da6e41b307805cd1982da9e2ea2e90e6d7" default))
  '(package-selected-packages
-   '(all-the-icons doom-modeline leuven-theme ligature ligatures ef-themes projectile-rails smartparens-ruby smartparens enh-ruby-mode faff-theme zenburn-theme kaolin-themes sqlformat docker org-modern yasnippet-snippets yard-mode yaml-mode ws-butler vterm vertico uuidgen tree-sitter-langs orderless mood-line markdown-mode marginalia kind-icon json-mode diminish corfu bundler ace-window))
+   '(color-theme-sanityinc-tomorrow monokai-pro-theme blackboard-theme flymake-aspell all-the-icons doom-modeline leuven-theme ligature ligatures ef-themes projectile-rails smartparens-ruby smartparens enh-ruby-mode faff-theme zenburn-theme kaolin-themes sqlformat docker yasnippet-snippets yard-mode yaml-mode ws-butler vterm vertico uuidgen orderless mood-line markdown-mode marginalia kind-icon json-mode diminish corfu bundler ace-window))
  '(safe-local-variable-values
    '((setq-local devdocs-current-docs quote
                  ("ruby~3.1" "rails~7.0"))
