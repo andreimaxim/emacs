@@ -6,32 +6,13 @@
   :config
   (load-theme 'leuven t))
 
-(use-package blackboard-theme
-  :ensure t)
-
 (set-face-background 'fringe (face-attribute 'default :background))
 
-;; Default mode, with a white background and narrow font
-(defun andreimaxim/emacs-mode ()
-  (interactive)
-  (disable-theme 'blackboard)
-  (enable-theme 'leuven)
-  (set-face-foreground 'line-number "gray90")
-  (set-face-attribute 'default nil :family "PragmataPro Mono Liga" :height 120)
-  (set-face-attribute 'fixed-pitch nil :font "PragmataPro Mono Liga")
-  (set-face-attribute 'variable-pitch nil :family "PragmataPro Mono Liga"))
-
-;; Textmate-like UI, with wider font
-(defun andreimaxim/textmate-mode ()
-  (interactive)
-  (disable-theme 'leuven)
-  (enable-theme 'blackboard)
-  (set-face-attribute 'default nil :family "JetBrains Mono" :height 110)
-  (set-face-attribute 'fixed-pitch nil :font "JetBrains Mono")
-  (set-face-attribute 'variable-pitch nil :family "JetBrains Mono"))
-
-;; Default to the regular Emacs mode
-(andreimaxim/emacs-mode)
+(set-face-foreground 'line-number "gray90")
+(set-face-attribute 'default nil :family "PragmataPro Mono Liga" :height 160)
+(set-face-attribute 'fixed-pitch nil :font "PragmataPro Mono Liga")
+(set-face-attribute 'variable-pitch nil :family "PragmataPro Mono Liga")
+(set-face-attribute 'mode-line nil :height 160)
 
 ;; Highlight the current line
 (use-package hl-line
@@ -77,9 +58,15 @@
   :ensure t
   :config (which-key-mode))
 
+(use-package project
+	:ensure nil
+	:bind
+	(("s-p" . project-switch-project)
+	 ("s-f" . project-find-file)))
+
 (use-package vertico
-  :ensure t
-  :init (vertico-mode))
+	:ensure t
+	:init (vertico-mode))
 
 ;; Add information about buffers, lines and so on.
 (use-package marginalia
@@ -168,11 +155,11 @@
          ;; C-x bindings (ctl-x-map)
          ("C-x M-:" . consult-complex-command)     ;; orig. repeat-complex-command
          ("C-x b" . consult-buffer)                ;; orig. switch-to-buffer
-	       ("C-x p g" . consult-ripgrep)		   ;; orig project-find-regexp
+	       ("s-g" . consult-ripgrep)		   ;; orig project-find-regexp
 	       ("C-x 4 b" . consult-buffer-other-window) ;; orig. switch-to-buffer-other-window
          ("C-x 5 b" . consult-buffer-other-frame)  ;; orig. switch-to-buffer-other-frame
          ("C-x r b" . consult-bookmark)            ;; orig. bookmark-jump
-         ("C-x p b" . consult-project-buffer)      ;; orig. project-switch-to-buffer
+         ("s-b" . consult-project-buffer)      ;; orig. project-switch-to-buffer
          ;; Custom M-# bindings for fast register access
          ("M-#" . consult-register-load)
          ("M-'" . consult-register-store)          ;; orig. abbrev-prefix-mark (unrelated)

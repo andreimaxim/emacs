@@ -1,3 +1,11 @@
+;; Load the env variables, especially rbenv settings
+(use-package exec-path-from-shell
+  :ensure t)
+
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+
+
 (use-package display-line-numbers
   :ensure nil
   :hook (prog-mode . display-line-numbers-mode))
@@ -14,8 +22,14 @@
   :ensure t
   :hook (prog-mode . ws-butler-mode))
 
-;; Probably the best git porcelain out there
 (use-package magit
+  :ensure t)
+
+(use-package tree-sitter
+  :ensure t
+  :hook ((css-mode go-mode html-mode javascript-mode json-mode ruby-mode typescrypt-mode) . tree-sitter-hl-mode))
+
+(use-package tree-sitter-langs
   :ensure t)
 
 (use-package yasnippet
@@ -49,7 +63,12 @@
 ;; Connect an Emacs REPL buffer to a Ruby subprocess.
 (use-package inf-ruby
   :ensure t
-  :hook (ruby-mode . inf-ruby-minor-mode))
+  :hook (ruby-mode . inf-ruby-minor-mode)
+  :custom (inf-ruby-console-environment "development"))
+
+(use-package seeing-is-believing
+  :ensure t
+  :hook (ruby-mode . seeing-is-believing))
 
 (use-package yaml-mode
   :ensure t)
@@ -65,5 +84,39 @@
 ;; For UUIDv4 generation
 (use-package uuidgen
   :ensure t)
+
+(use-package align
+	:ensure nil
+	:config
+	(add-to-list 'align-rules-list
+							 '(ruby-comma-delimiter
+								 (regexp . ",\\(\\s-*\\)[^# \t\n]")
+								 (repeat . t)
+								 (modes  . '(ruby-mode))))
+
+	(add-to-list 'align-rules-list
+							 '(ruby-hash-literal
+								 (regexp . "\\(\\s-*\\)=>\\s-*[^# \t\n]")
+								 (group 2 3)
+								 (repeat . t)
+								 (modes  . '(ruby-mode))))
+
+	(add-to-list 'align-rules-list
+							 '(ruby-hash-literal2
+								 (regexp . "[a-z0-9]:\\(\\s-*\\)[^# \t\n]")
+								 (repeat . t)
+								 (modes  . '(ruby-mode))))
+
+	(add-to-list 'align-rules-list
+							 '(ruby-assignment-literal
+								 (regexp . "\\(\\s-*\\)=\\s-*[^# \t\n]")
+								 (repeat . t)
+								 (modes  . '(ruby-mode))))
+
+	(add-to-list 'align-rules-list
+							 '(ruby-xmpfilter-mark
+								 (regexp . "\\(\\s-*\\)# => [^#\t\n]")
+								 (repeat . nil)
+								 (modes  . '(ruby-mode)))))
 
 (provide 'andreimaxim-prog)

@@ -8,7 +8,18 @@
 
 ;; Keep customizations in a separate file that can be easily gitignored.
 (setq custom-file (locate-user-emacs-file "custom.el"))
-(load custom-file 'noerror 'nomessage)
+
+(global-set-key [(super a)] 'mark-whole-buffer)
+(global-set-key [(super v)] 'yank)
+(global-set-key [(super c)] 'kill-ring-save)
+(global-set-key [(super s)] 'save-buffer)
+(global-set-key [(super l)] 'goto-line)
+(global-set-key [(super w)]
+                (lambda () (interactive) (delete-window)))
+(global-set-key [(super z)] 'undo)
+
+(setq mac-option-modifier 'meta)
+(setq mac-command-modifier 'super)
 
 ;; No tabs
 (setq-default indent-tabs-mode nil)
@@ -33,6 +44,18 @@
 
 ;; Use the visual bell instead of a sound
 (setq-default visible-bell t)
+
+;; Emacs generates a lot of beeps.
+;;
+;; The alternative on macOS is a big yellow warning sign in the middle
+;; of the screen, which is even more annoying.
+(defun my-terminal-visible-bell ()
+  "A friendlier visual bell effect."
+  (invert-face 'mode-line)
+  (run-with-timer 0.1 nil 'invert-face 'mode-line))
+
+(setq visible-bell nil
+      ring-bell-function 'my-terminal-visible-bell)
 
 ;; No file dialog
 (setq use-file-dialog nil)
@@ -65,7 +88,7 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 
 ;; No menu bar
-(menu-bar-mode -1)
+;;(menu-bar-mode -1)
 
 ;; Navigate windows using shift+direction
 (windmove-default-keybindings)
@@ -73,11 +96,19 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;; Use the new scroll mode which should be smoother on Emacs 29+
-(pixel-scroll-precision-mode t)
+;; (pixel-scroll-precision-mode t)
 
 ;; Do not create any backups as any text that's worth a backup will be stored
 ;; in git or something similar.
+(setq backup-by-copying t)
 (setq make-backup-files nil)
+
+;; Stop making #autosave# files
+(setq auto-save-default nil)
+
+(unless backup-directory-alist
+  (setq backup-directory-alist `(("." . ,(concat user-emacs-directory
+                                                 "backups")))))
 
 ;; Autorefresh buffers
 (global-auto-revert-mode 1)

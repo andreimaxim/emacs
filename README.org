@@ -2,14 +2,9 @@
 #+AUTHOR: Andrei Maxim
 #+PROPERTY: header-args :tangle yes
 
-This file uses [[https://en.wikipedia.org/wiki/Literate_programming][literate programming]] promoted by Donald E. Knuth.
-
-#+begin_src emacs-lisp :tangle no
-  (require 'org)
-  (org-babel-load-file (expand-file-name "README.org" user-emacs-directory))
-#+end_src
-
 ** Setup
+
+For Linux:
 
 #+begin_example
   $ git clone https://git.savannah.gnu.org/git/emacs.git
@@ -19,6 +14,16 @@ This file uses [[https://en.wikipedia.org/wiki/Literate_programming][literate pr
   $ sudo make install
 #+end_example
 
+For Mac:
+
+#+begin_example
+  $ git clone https://git.savannah.gnu.org/git/emacs.git
+  $ ./autogen.sh
+  $ ./configure --with-native-compilation --with-json --with-ns
+  $ gmake -j$(nproc)
+  $ gmake install
+  $ sudo xattr -rds com.apple.quarantine nextstep/Emacs.app
+#+end_example
 
 ** Programming
 
