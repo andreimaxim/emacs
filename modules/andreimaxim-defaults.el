@@ -9,18 +9,6 @@
 ;; Keep customizations in a separate file that can be easily gitignored.
 (setq custom-file (locate-user-emacs-file "custom.el"))
 
-(global-set-key [(super a)] 'mark-whole-buffer)
-(global-set-key [(super v)] 'yank)
-(global-set-key [(super c)] 'kill-ring-save)
-(global-set-key [(super s)] 'save-buffer)
-(global-set-key [(super l)] 'goto-line)
-(global-set-key [(super w)]
-                (lambda () (interactive) (delete-window)))
-(global-set-key [(super z)] 'undo)
-
-(setq mac-option-modifier 'meta)
-(setq mac-command-modifier 'super)
-
 ;; No tabs
 (setq-default indent-tabs-mode nil)
 
