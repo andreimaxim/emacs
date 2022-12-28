@@ -76,7 +76,7 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 
 ;; No menu bar
-;;(menu-bar-mode -1)
+(menu-bar-mode -1)
 
 ;; Navigate windows using shift+direction
 (windmove-default-keybindings)
