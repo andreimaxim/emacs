@@ -1,10 +1,8 @@
 ;; Load the env variables, especially rbenv settings
 (use-package exec-path-from-shell
-  :ensure t)
-
-(when (memq window-system '(mac ns x))
+  :ensure t
+  :config
   (exec-path-from-shell-initialize))
-
 
 (use-package display-line-numbers
   :ensure nil
