@@ -2,28 +2,21 @@
 #+AUTHOR: Andrei Maxim
 #+PROPERTY: header-args :tangle yes
 
+
 ** Setup
 
-For Linux:
+For Ubuntu 22.04 LTS:
 
 #+begin_example
   $ git clone https://git.savannah.gnu.org/git/emacs.git
+  $ cd emacs
   $ ./autogen.sh
-  $ ./configure --with-native-compilation --with-json
+  $ export CC=/usr/bin/gcc-10 CXX=/usr/bin/gcc-10
+  $ ./configure --with-native-compilation --with-json --with-rsvg --with-xml2
   $ make -j$(nproc)
   $ sudo make install
 #+end_example
 
-For Mac:
-
-#+begin_example
-  $ git clone https://git.savannah.gnu.org/git/emacs.git
-  $ ./autogen.sh
-  $ ./configure --with-native-compilation --with-json --with-ns
-  $ gmake -j$(nproc)
-  $ gmake install
-  $ sudo xattr -rds com.apple.quarantine nextstep/Emacs.app
-#+end_example
 
 ** Programming
 
