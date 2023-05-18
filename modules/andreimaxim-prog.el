@@ -43,12 +43,10 @@
 (use-package devdocs
   :ensure t
   :config
-  (global-set-key (kbd "C-h D") 'devdocs-lookup)
-  (setq devdocs-current-docs '("ruby~3.1" "rails~7.0")))
+  (global-set-key (kbd "C-h D") 'devdocs-lookup))
 
 (use-package yard-mode
   :ensure t
-  :diminish
   :hook (ruby-mode . yard-mode))
 
 (use-package web-mode
