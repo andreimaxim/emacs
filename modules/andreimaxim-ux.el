@@ -58,10 +58,7 @@
   :config (which-key-mode))
 
 (use-package project
-	:ensure nil
-	:bind
-	(("s-p" . project-switch-project)
-	 ("s-f" . project-find-file)))
+	:ensure nil)
 
 (use-package vertico
 	:ensure t
