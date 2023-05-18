@@ -7,10 +7,9 @@
   :config
   (load-theme 'standard-light t))
 
-
-(set-face-attribute 'default nil :family "PragmataPro Mono Liga" :height 120)
-(set-face-attribute 'fixed-pitch nil :font "PragmataPro Mono Liga")
-(set-face-attribute 'variable-pitch nil :family "PragmataPro Mono Liga")
+(set-face-attribute 'default nil :family "PragmataPro Mono" :height 120)
+(set-face-attribute 'fixed-pitch nil :font "PragmataPro Mono")
+(set-face-attribute 'variable-pitch nil :family "PragmataPro Mono")
 (set-face-attribute 'mode-line nil :height 120)
 
 ;; Highlight the current line
