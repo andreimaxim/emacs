@@ -60,7 +60,9 @@
 (use-package inf-ruby
   :ensure t
   :hook (ruby-mode . inf-ruby-minor-mode)
-  :custom (inf-ruby-console-environment "development"))
+  :custom (inf-ruby-console-environment "development")
+  :bind (:map inf-ruby-minor-mode-map
+              ("C-c C-s" . inf-ruby-console-auto)))
 
 (use-package seeing-is-believing
   :ensure t
