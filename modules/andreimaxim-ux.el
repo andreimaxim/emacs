@@ -36,7 +36,8 @@
   :ensure t
   :hook (after-init . doom-modeline-mode)
   :custom
-  (doom-modeline-buffer-file-name-style 'relative-to-project))
+  (doom-modeline-buffer-file-name-style 'relative-to-project)
+  (doom-modeline-icon nil))
 
 ;;; UX improvements
 
