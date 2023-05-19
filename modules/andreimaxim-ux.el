@@ -201,6 +201,16 @@
   :hook (completion-list-mode . consult-preview-at-point-mode)
   )
 
+(use-package dumb-jump
+  :ensure t
+  :custom
+  (dumb-jump-prefer-searcher 'rg)
+  ;; (xref-show-definitions-function #'xref-show-definitions-completing-read)
+  (xref-show-definitions-function #'consult-xref)
+
+  :config
+  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
+
 (use-package kind-icon
   :ensure t
   :after corfu
