@@ -145,6 +145,7 @@
 ;; The keybindings are the one suggested by the package author.
 (use-package consult
   :ensure t
+  :ensure-system-package rg
   :bind (("C-c h" . consult-history)
          ("C-c m" . consult-mode-command)
          ("C-c k" . consult-kmacro)
