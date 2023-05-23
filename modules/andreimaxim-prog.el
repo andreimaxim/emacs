@@ -79,4 +79,12 @@
 (use-package markdown-mode
   :ensure t)
 
+(use-package sqlformat
+  :ensure t
+  :ensure-system-package sqlfluff
+  :config
+  (setq sqlformat-command 'sqlfluff)
+  (setq sqlformat-args '("--dialect" "postgres"))
+  :hook (sql-mode . sqlformat-on-save-mode))
+
 (provide 'andreimaxim-prog)
