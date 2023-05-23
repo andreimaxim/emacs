@@ -5,18 +5,19 @@
 
 ** Setup
 
-For Ubuntu 22.04 LTS:
+Install ripgrep:
 
-#+begin_example
-  $ git clone https://git.savannah.gnu.org/git/emacs.git
-  $ cd emacs
-  $ ./autogen.sh
-  $ export CC=/usr/bin/gcc-10 CXX=/usr/bin/gcc-10
-  $ ./configure --with-native-compilation --with-json --with-rsvg --with-xml2
-  $ make -j$(nproc)
-  $ sudo make install
-#+end_example
+#+begin_src shell :tangle yes
+  sudo dnf install ripgrep
+#+end_src
 
+For SQL formatting, the following Perl packages need to be installed:
+
+#+begin_src shell :tangle yes
+  sudo dnf install perl-ExtUtils-MakeMaker perl-FindBin perl-open 
+#+end_src
+
+Also, the pgFormatter package needs to be downloaded from Github and installed.
 
 ** Programming
 

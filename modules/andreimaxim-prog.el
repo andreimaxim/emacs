@@ -81,10 +81,10 @@
 
 (use-package sqlformat
   :ensure t
-  :ensure-system-package sqlfluff
+  :ensure-system-package pg_format
   :config
-  (setq sqlformat-command 'sqlfluff)
-  (setq sqlformat-args '("--dialect" "postgres"))
-  :hook (sql-mode . sqlformat-on-save-mode))
+  (setq sqlformat-command 'pgformatter)
+  :hook (sql-mode . sqlformat-on-save-mode)
+  :bind (:map sql-mode-map ("C-c C-f" . sqlformat)))
 
 (provide 'andreimaxim-prog)
