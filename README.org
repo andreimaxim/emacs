@@ -42,19 +42,52 @@ Configure Emacs with the required features:
 
 ** Packages
 
-Install ripgrep:
+*** Ripgrep
 
 #+begin_src shell
-  sudo dnf install ripgrep
+  sudo apt install ripgrep
 #+end_src
 
-For SQL formatting, the following Perl packages need to be installed:
+*** pgFormatter
+
+Install required Perl packages on Ubuntu 22.04:
+
+#+begin_src shell
+  sudo apt install perl-doc
+#+end_src
+
+... or on Fedora 38:
 
 #+begin_src shell
   sudo dnf install perl-ExtUtils-MakeMaker perl-FindBin perl-open 
 #+end_src
 
-Also, the pgFormatter package needs to be downloaded from Github and installed.
+Install the package locally:
+
+#+begin_src shell
+  git clone git@github.com:darold/pgFormatter.git
+#+end_src
+
+#+begin_src shell
+  cd pgFormatter
+#+end_src
+
+#+begin_src shell
+  git checkout v5.5
+#+end_src
+
+#+begin_src shell
+  perl Makefile.PL
+#+end_src
+
+#+begin_src shell
+  make
+#+end_src
+
+#+begin_src shell
+  sudo make install
+#+end_src
+
 
 ** Project-specific setup
 
