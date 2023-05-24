@@ -5,27 +5,62 @@
 
 ** Setup
 
+Install required system packages:
+
+#+begin_src shell
+  sudo apt install build-essential libgtk-3-dev libgnutls28-dev libtiff5-dev libgif-dev \
+       libjpeg-dev libpng-dev libxpm-dev libncurses-dev texinfo autoconf libjansson4 \
+       libjansson-dev libgccjit0 libgccjit-10-dev gcc-10 g++-10
+#+end_src
+
+Setup the default compiler to point to gcc-10:
+
+#+begin_src shell
+  export CC=/usr/bin/gcc-10 CXX=/usr/bin/gcc-10
+#+end_src
+
+Clone the Emacs repository:
+
+#+begin_src shell
+  git clone git://git.sv.gnu.org/emacs.git
+#+end_src
+
+#+begin_src shell
+  cd emacs
+#+end_src
+
+Configure Emacs with the required features:
+
+#+begin_src shell
+  ./autogen.sh
+#+end_src
+
+#+begin_src shell
+  ./configure --with-native-compilation --with-json --with-rsvg --with-xml2
+#+end_src
+
+
+** Packages
+
 Install ripgrep:
 
-#+begin_src shell :tangle yes
+#+begin_src shell
   sudo dnf install ripgrep
 #+end_src
 
 For SQL formatting, the following Perl packages need to be installed:
 
-#+begin_src shell :tangle yes
+#+begin_src shell
   sudo dnf install perl-ExtUtils-MakeMaker perl-FindBin perl-open 
 #+end_src
 
 Also, the pgFormatter package needs to be downloaded from Github and installed.
 
-** Programming
-
-*** DevDocs
+** Project-specific setup
 
 Add this to a =dir-locals.el= file in the project root to have =devdocs=
 automatically search through Ruby 3.1 and Ruby on Rails 7.0 documentation:
 
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
   ((ruby-mode . ((eval . (setq-local devdocs-current-docs '("ruby~3.1" "rails~7.0"))))))
 #+end_src
