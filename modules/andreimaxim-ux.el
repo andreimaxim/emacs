@@ -3,13 +3,19 @@
 ;;; UI tweaks
 
 (use-package standard-themes
-  :ensure t
-  :config (load-theme 'standard-light t))
+  :ensure t)
 
-(set-face-attribute 'default nil :family "PragmataPro Mono" :height 120)
-(set-face-attribute 'fixed-pitch nil :font "PragmataPro Mono" :height 120)
-(set-face-attribute 'variable-pitch nil :family "PragmataPro Mono" :height 120)
-(set-face-attribute 'mode-line nil :height 120)
+(use-package one-themes
+  :ensure t)
+
+(use-package leuven-theme
+  :ensure t
+  :config (load-theme 'leuven t))
+
+(set-face-attribute 'default nil :family "Iosevka" :height 120)
+(set-face-attribute 'fixed-pitch nil :family "Iosevka" :height 120)
+(set-face-attribute 'variable-pitch nil :family "Iosevka Aile" :height 100)
+(set-face-attribute 'mode-line nil :family "Iosevka" :height 120)
 
 ;; Highlight the current line
 (use-package hl-line
