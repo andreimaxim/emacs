@@ -67,6 +67,14 @@
   :bind (:map inf-ruby-minor-mode-map
               ("C-c C-s" . inf-ruby-console-auto)))
 
+(use-package ansi-color
+  :ensure t
+  :config
+  (add-hook 'compilation-filter-hook
+            (lambda ()
+              (when (eq major-mode 'compilation-mode)
+                (ansi-color-apply-on-region compilation-filter-start (point-max))))))
+
 (use-package seeing-is-believing
   :ensure t
   :hook (ruby-mode . seeing-is-believing))
