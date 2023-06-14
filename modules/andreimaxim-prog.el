@@ -9,6 +9,8 @@
   :hook (prog-mode . display-line-numbers-mode)
   :config (setq display-line-numbers-width 3))
 
+(setq display-line-numbers-width 3)
+
 ;; The default electric-indent will indent only on return, which feels a bit
 ;; too late.
 (use-package aggressive-indent
