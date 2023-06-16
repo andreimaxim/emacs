@@ -94,9 +94,9 @@
 ;; Stop making #autosave# files
 (setq auto-save-default nil)
 
-(unless backup-directory-alist
-  (setq backup-directory-alist `(("." . ,(concat user-emacs-directory
-                                                 "backups")))))
+;; But save every 1s because SSDs are the norm
+(setq auto-save-timeout 1)
+(setq auto-save-default t)
 
 ;; Autorefresh buffers
 (global-auto-revert-mode 1)
