@@ -41,7 +41,8 @@
   :ensure t)
 
 (use-package smartparens
-  :ensure t)
+  :ensure t
+  :hook (prog-mode . smartparens-mode))
 
 (use-package devdocs
   :ensure t
