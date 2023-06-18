@@ -40,9 +40,9 @@
 (use-package yasnippet-snippets
   :ensure t)
 
-(use-package smartparens
-  :ensure t
-  :hook (prog-mode . smartparens-mode))
+(use-package elec-pair
+  :ensure nil
+  :hook (prog-mode . electric-pair-mode))
 
 (use-package devdocs
   :ensure t
