@@ -27,6 +27,7 @@
 
 ;; Does not work with Emacs older than 29.1
 (use-package paren
+  :ensure nil
   :hook (prog-mode . show-paren-mode)
   :custom (show-paren-context-when-offscreen 'overlay))
 
