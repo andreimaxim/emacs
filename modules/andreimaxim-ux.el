@@ -1,13 +1,6 @@
 ;;; andreimaxim-ux.el --- UI and UX settings  -*- lexical-binding: t -*-
 
 ;;; UI tweaks
-
-(use-package standard-themes
-  :ensure t)
-
-(use-package one-themes
-  :ensure t)
-
 (use-package leuven-theme
   :ensure t
   :config (load-theme 'leuven t))
