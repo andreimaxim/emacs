@@ -5,10 +5,22 @@
   :ensure t
   :config (load-theme 'leuven t))
 
-(set-face-attribute 'default nil :family "Iosevka" :height 120)
-(set-face-attribute 'fixed-pitch nil :family "Iosevka" :height 120)
-(set-face-attribute 'variable-pitch nil :family "Iosevka Aile" :height 100)
-(set-face-attribute 'mode-line nil :family "Iosevka" :height 120)
+(defvar my-fixed-pitch-height
+  (cond
+   ((eq system-type 'gnu/linux) 120)
+   ((eq system-type 'darwin) 160)
+   (t 140)))
+
+(defvar my-variable-pitch-height
+  (cond
+   ((eq system-type 'gnu/linux) 100)
+   ((eq system-type 'darwin) 120)
+   (t 120)))
+
+(set-face-attribute 'default nil :family "Iosevka" :height my-fixed-pitch-height)
+(set-face-attribute 'fixed-pitch nil :family "Iosevka" :height my-fixed-pitch-height)
+(set-face-attribute 'variable-pitch nil :family "Iosevka Aile" :height my-variable-pitch-height)
+(set-face-attribute 'mode-line nil :family "Iosevka" :height my-fixed-pitch-height)
 
 ;; Highlight the current line
 (use-package hl-line
