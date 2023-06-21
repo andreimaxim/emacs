@@ -69,15 +69,6 @@
 ;; No confirmation for visiting non-existent files
 (setq confirm-nonexistent-file-or-buffer nil)
 
-;; No scroll bars
-(if (fboundp 'scroll-bar-mode) (set-scroll-bar-mode nil))
-
-;; No toolbar
-(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-
-;; No menu bar
-(menu-bar-mode -1)
-
 ;; Navigate windows using shift+direction
 (windmove-default-keybindings)
 
