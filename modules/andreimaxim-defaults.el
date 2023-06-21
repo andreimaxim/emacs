@@ -84,7 +84,8 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;; Use the new scroll mode which should be smoother on Emacs 29+
-;; (pixel-scroll-precision-mode t)
+(when (>= emacs-major-version 29)
+  (pixel-scroll-precision-mode t))
 
 ;; Do not create any backups as any text that's worth a backup will be stored
 ;; in git or something similar.
