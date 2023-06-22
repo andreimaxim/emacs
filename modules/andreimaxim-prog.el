@@ -68,10 +68,6 @@
   :bind (:map inf-ruby-minor-mode-map
               ("C-c C-s" . inf-ruby-console-auto)))
 
-
-(require 'enhanced-project-for-rails)
-
-
 (use-package seeing-is-believing
   :ensure t
   :hook (ruby-mode . seeing-is-believing))
