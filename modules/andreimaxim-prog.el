@@ -1,15 +1,25 @@
 ;; Load the env variables, especially rbenv settings
-(use-package exec-path-from-shell
-  :ensure t
-  :config
-  (exec-path-from-shell-initialize))
-
 (use-package display-line-numbers
   :ensure nil
   :hook (prog-mode . display-line-numbers-mode)
   :config (setq display-line-numbers-width 3))
 
-(setq display-line-numbers-width 3)
+(use-package flymake
+  :ensure nil
+  :hook (prog-mode . flymake-mode))
+
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (exec-path-from-shell-initialize))
+
+(use-package elec-pair
+  :ensure nil
+  :hook (prog-mode . electric-pair-mode))
+
+(use-package ansi-color
+  :ensure nil
+  :hook (compilation-filter . ansi-color-compilation-filter))
 
 ;; The default electric-indent will indent only on return, which feels a bit
 ;; too late.
@@ -39,10 +49,6 @@
 
 (use-package yasnippet-snippets
   :ensure t)
-
-(use-package elec-pair
-  :ensure nil
-  :hook (prog-mode . electric-pair-mode))
 
 (use-package devdocs
   :ensure t
