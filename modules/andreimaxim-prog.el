@@ -58,7 +58,7 @@
 (use-package web-mode
   :ensure t
   :mode
-  (".liquid")
+  (".html.erb" ".liquid")
   :custom
   (web-mode-enable-front-matter-block t))
 
