@@ -13,10 +13,6 @@
   :config
   (exec-path-from-shell-initialize))
 
-(use-package elec-pair
-  :ensure nil
-  :hook (prog-mode . electric-pair-mode))
-
 (use-package ansi-color
   :ensure nil
   :hook (compilation-filter . ansi-color-compilation-filter))
