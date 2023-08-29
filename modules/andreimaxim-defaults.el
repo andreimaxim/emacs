@@ -83,8 +83,11 @@
 (setq backup-by-copying t)
 (setq make-backup-files nil)
 
-;; Stop making #autosave# files
-(setq auto-save-default nil)
+;; Stop making #filename# autosave files
+(setq auto-save-visited-mode t)
+
+;; Stop making .#filename lock files
+(setq create-lockfiles nil)
 
 ;; But save every 1s because SSDs are the norm
 (setq auto-save-timeout 1)
