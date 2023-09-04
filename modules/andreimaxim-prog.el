@@ -30,7 +30,11 @@
   :hook (prog-mode . ws-butler-mode))
 
 (use-package magit
-  :ensure t)
+  :ensure t
+  :bind (("C-x g" . magit-status)
+         ("C-c g" . magit-dispatch)
+         ("C-c f" . magit-file-dispatch))
+  :custom (magit-define-global-key-bindings 'recommended))
 
 (use-package tree-sitter
   :ensure t
