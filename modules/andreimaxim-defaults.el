@@ -80,11 +80,10 @@
 
 ;; Do not create any backups as any text that's worth a backup will be stored
 ;; in git or something similar.
-(setq backup-by-copying t)
 (setq make-backup-files nil)
 
-;; Stop making #filename# autosave files
-(setq auto-save-visited-mode t)
+;; Stop making #filename# autosave files and write directly to the original file
+(auto-save-visited-mode)
 
 ;; Stop making .#filename lock files
 (setq create-lockfiles nil)
