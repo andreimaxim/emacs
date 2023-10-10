@@ -47,6 +47,11 @@
 (use-package tree-sitter-langs
   :ensure t)
 
+(use-package ruby-mode
+  :ensure nil
+  :mode ("\\.jbuilder\\'" . ruby-mode)
+  ("\\.builder\\'" . ruby-mode))
+
 (use-package yasnippet
   :ensure t
   :hook  ((prog-mode org-mode) . yas-minor-mode))
