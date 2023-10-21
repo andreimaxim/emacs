@@ -40,13 +40,6 @@
          ("C-c f" . magit-file-dispatch))
   :custom (magit-define-global-key-bindings 'recommended))
 
-(use-package tree-sitter
-  :ensure t
-  :hook ((css-mode go-mode html-mode javascript-mode json-mode ruby-mode typescrypt-mode) . tree-sitter-hl-mode))
-
-(use-package tree-sitter-langs
-  :ensure t)
-
 (use-package ruby-mode
   :ensure nil
   :mode ("\\.jbuilder\\'" . ruby-mode)
