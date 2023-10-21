@@ -100,3 +100,4 @@
   :bind (:map sql-mode-map ("C-c C-f" . sqlformat)))
 
 (provide 'andreimaxim-prog)
+;;; andreimaxim-prog.el ends here
