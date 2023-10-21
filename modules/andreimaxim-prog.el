@@ -8,9 +8,9 @@
   :ensure nil
   :hook (prog-mode . flymake-mode))
 
-(use-package shell
+(use-package shell-script-mode
   :ensure nil
-  :mode ("\\.env\\'" . shell-mode))
+  :mode ("\\.env\\'" . shell-script-mode))
 
 (use-package exec-path-from-shell
   :ensure t
