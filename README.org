@@ -29,6 +29,12 @@ Clone the Emacs repository:
   cd emacs
 #+end_src
 
+If the directory is already cloned, reset its state:
+
+#+begin_src shell
+  git clean -fdx
+#+end_src
+
 Configure Emacs with the required features:
 
 #+begin_src shell
@@ -36,7 +42,7 @@ Configure Emacs with the required features:
 #+end_src
 
 #+begin_src shell
-  ./configure --with-native-compilation --with-json --with-rsvg --with-xml2
+  ./configure --with-native-compilation --with-json --with-rsvg --with-xml2 --with-tree-sitter
 #+end_src
 
 
@@ -54,12 +60,6 @@ Install required Perl packages on Ubuntu 22.04:
 
 #+begin_src shell
   sudo apt install perl-doc
-#+end_src
-
-... or on Fedora 38:
-
-#+begin_src shell
-  sudo dnf install perl-ExtUtils-MakeMaker perl-FindBin perl-open 
 #+end_src
 
 Install the package locally:
