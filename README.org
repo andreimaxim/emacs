@@ -29,6 +29,12 @@ Clone the Emacs repository:
   cd emacs
 #+end_src
 
+Check out the branch for v29, if it's not already checked out:
+
+#+begin_src shell
+  git checkout -b emacs-29
+#+end_src
+
 If the directory is already cloned, reset its state:
 
 #+begin_src shell
@@ -42,9 +48,16 @@ Configure Emacs with the required features:
 #+end_src
 
 #+begin_src shell
-  ./configure --with-native-compilation --with-json --with-rsvg --with-xml2 --with-tree-sitter
+  ./configure --with-native-compilation --with-json --with-rsvg --with-xml2
 #+end_src
 
+#+begin_src shell
+  make --jobs=$(nproc)
+#+end_src
+
+#+begin_src shell
+  sudo make install
+#+end_src
 
 ** Packages
 
