@@ -37,7 +37,6 @@
 (require 'andreimaxim-ux)
 (require 'andreimaxim-prog)
 (require 'andreimaxim-ruby-align)
-(require 'andreimaxim-ts)
 (require 'andreimaxim-org)
 
 ;; Reset the GC to a normal value after startup
