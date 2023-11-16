@@ -98,13 +98,5 @@
 (use-package markdown-mode
   :ensure t)
 
-(use-package sqlformat
-  :ensure t
-  :ensure-system-package pg_format
-  :config
-  (setq sqlformat-command 'pgformatter)
-  :hook (sql-mode . sqlformat-on-save-mode)
-  :bind (:map sql-mode-map ("C-c C-f" . sqlformat)))
-
 (provide 'andreimaxim-prog)
 ;;; andreimaxim-prog.el ends here
