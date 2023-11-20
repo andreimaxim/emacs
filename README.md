@@ -5,16 +5,16 @@
 ### Install the packages required for compiling Emacs from source:
 
 ```shell
-$ sudo apt install build-essential libgtk-3-dev libgnutls28-dev libtiff5-dev libgif-dev \
+sudo apt install build-essential libgtk-3-dev libgnutls28-dev libtiff5-dev libgif-dev \
     libjpeg-dev libpng-dev libxpm-dev libncurses-dev texinfo autoconf libjansson4 \
-    libjansson-dev libgccjit0 libgccjit-10-dev gcc-10 g++-10
+    libjansson-dev libxml-dev librsvg2-dev libgccjit0 libgccjit-10-dev gcc-10 g++-10
 ```
 
 ### Install additional packages, required by the configuration:
 
 
 ```shell
-$ sudo apt install ripgrep
+sudo apt install ripgrep
 ```
 
 ### Install packages for Windows
