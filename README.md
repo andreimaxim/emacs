@@ -49,7 +49,7 @@ cd emacs
 ... and check out the 29 branch:
 
 ```shell
-git checkout -b emacs-29
+git checkout emacs-29
 ```
 
 ### Compilation
