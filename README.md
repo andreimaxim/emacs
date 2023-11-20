@@ -22,7 +22,7 @@ sudo apt install ripgrep
 In the WSL2 distribution, add the full theme to remove the error messages:
 
 ```shell
-$ sudo apt install adwaita-icon-theme-full
+sudo apt install adwaita-icon-theme-full
 ```
 
 Then install win32yank (most likely through a package manager like Chocolatey).
@@ -33,47 +33,50 @@ Then install win32yank (most likely through a package manager like Chocolatey).
 Setup the default compiler to point to gcc-10:
 
 ```shell
-$ export CC=/usr/bin/gcc-10 CXX=/usr/bin/gcc-10
+export CC=/usr/bin/gcc-10 CXX=/usr/bin/gcc-10
 ```
 
 Clone the Emacs repository:
 
 ```shell
-$ git clone git://git.sv.gnu.org/emacs.git
+git clone git://git.sv.gnu.org/emacs.git
 ```
 
 ```shell
-$ cd emacs
+cd emacs
 ```
 
 Check out the branch for v29, if it's not already checked out:
 
 ```shell
-$ git checkout -b emacs-29
+git checkout -b emacs-29
 ```
 
 If the directory is already cloned, reset its state:
 
 ```shell
-$ git clean -fdx
+git clean -fdx
 ```
 
 Configure Emacs with the required features:
 
 ```shell
-$ ./autogen.sh
-$ ./configure --with-native-compilation --with-json --with-rsvg --with-xml2 --with-pgtk
+./autogen.sh
+```
+
+```shell
+./configure --with-native-compilation --with-json --with-rsvg --with-xml2 --with-pgtk
 ```
 
 Build, using as many cores as possible:
 
 ```shell
-$ make --jobs=$(nproc)
+make --jobs=$(nproc)
 ```
 
 Finally, install Emacs locally:
 
 ```shell
-$ sudo make install
+sudo make install
 ```
 
