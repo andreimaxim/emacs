@@ -1,8 +1,18 @@
 # Emacs Configuration
 
-## Setup
+This is a minimal Emacs configuration that sets up a simple UI and some packages
+that allow working with Ruby on Rails applications a bit easier.
 
-### Install the packages required for compiling Emacs from source:
+
+## Compiling Emacs
+
+The instructions are targeting Ubuntu 22.04 and involve building Emacs from source code,
+as it's simple enough and allows enabling a very specific set of features.
+
+
+### Initial setup
+
+The following system packages are required to build Emacs:
 
 ```shell
 sudo apt install build-essential libgtk-3-dev libgnutls28-dev libtiff5-dev libgif-dev \
@@ -10,31 +20,21 @@ sudo apt install build-essential libgtk-3-dev libgnutls28-dev libtiff5-dev libgi
     libjansson-dev libxml-dev librsvg2-dev libgccjit0 libgccjit-10-dev gcc-10 g++-10
 ```
 
-### Install additional packages, required by the configuration:
+The following packages are required by different Emacs packages enabled in the configuration:
 
 
 ```shell
 sudo apt install ripgrep
 ```
 
-### Install packages for Windows
-
-In the WSL2 distribution, add the full theme to remove the error messages:
+If this is installed in a WSL2 distribution, add the full theme to remove the error messages:
 
 ```shell
 sudo apt install adwaita-icon-theme-full
 ```
 
-Then install win32yank (most likely through a package manager like Chocolatey).
-
-
-## Installation
-
-Setup the default compiler to point to gcc-10:
-
-```shell
-export CC=/usr/bin/gcc-10 CXX=/usr/bin/gcc-10
-```
+Then install win32yank (most likely through a package manager like Chocolatey) as the copy & paste
+behavior from Emacs to Windows is broker.
 
 Clone the Emacs repository:
 
@@ -46,16 +46,24 @@ git clone git://git.sv.gnu.org/emacs.git
 cd emacs
 ```
 
-Check out the branch for v29, if it's not already checked out:
+... and check out the 29 branch:
 
 ```shell
 git checkout -b emacs-29
 ```
 
-If the directory is already cloned, reset its state:
+### Compilation
+
+Make sure there aren't any artefacts left after previous compilations:
 
 ```shell
 git clean -fdx
+```
+
+Setup the default compiler to point to gcc-10:
+
+```shell
+export CC=/usr/bin/gcc-10 CXX=/usr/bin/gcc-10
 ```
 
 Configure Emacs with the required features:
@@ -74,9 +82,8 @@ Build, using as many cores as possible:
 make --jobs=$(nproc)
 ```
 
-Finally, install Emacs locally:
+Finally, install Emacs:
 
 ```shell
 sudo make install
 ```
-
