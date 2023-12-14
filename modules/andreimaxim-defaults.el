@@ -63,9 +63,6 @@
 ;; No cursor in inactive windows
 (setq cursor-in-non-selected-windows nil)
 
-;; Text mode is initial mode
-(setq initial-major-mode 'org-mode)
-
 ;; No confirmation for visiting non-existent files
 (setq confirm-nonexistent-file-or-buffer nil)
 
