@@ -52,8 +52,9 @@
 
 (use-package ruby-mode
   :ensure nil
-  :mode ("\\.jbuilder\\'" . ruby-mode)
-  ("\\.builder\\'" . ruby-mode))
+  :mode
+  ("\\.jbuilder\\'" . ruby-mode)
+  :config (setq ruby-align-to-stmt-keywords t))
 
 (use-package yasnippet
   :ensure t
