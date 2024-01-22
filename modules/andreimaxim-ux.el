@@ -1,9 +1,7 @@
 ;;; andreimaxim-ux.el --- UI and UX settings  -*- lexical-binding: t -*-
 
 ;;; UI tweaks
-(use-package leuven-theme
-  :ensure t
-  :config (load-theme 'leuven t))
+(load-theme 'tango t)
 
 (set-face-attribute 'default nil :family "Pragmata Pro" :height 180)
 (set-face-attribute 'fixed-pitch nil :family "Pragmata Pro" :height 180)
