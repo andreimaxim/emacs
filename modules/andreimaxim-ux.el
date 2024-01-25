@@ -1,12 +1,15 @@
 ;;; andreimaxim-ux.el --- UI and UX settings  -*- lexical-binding: t -*-
 
 ;;; UI tweaks
-(load-theme 'tango t)
+(use-package apropospriate-theme
+  :ensure t
+  :config
+  (load-theme 'apropospriate-dark t))
 
-(set-face-attribute 'default nil :family "Pragmata Pro" :height 180)
-(set-face-attribute 'fixed-pitch nil :family "Pragmata Pro" :height 180)
-(set-face-attribute 'variable-pitch nil :family "Iosevka Aile" :height 140)
-(set-face-attribute 'mode-line nil :family "Pragmata Pro" :height 180)
+(set-face-attribute 'default nil :family "Pragmata Pro" :height 200)
+(set-face-attribute 'fixed-pitch nil :family "Pragmata Pro" :height 200)
+(set-face-attribute 'variable-pitch nil :family "Iosevka Aile" :height 160)
+(set-face-attribute 'mode-line nil :family "Pragmata Pro" :height 200)
 
 ;; Highlight the current line
 (use-package hl-line
