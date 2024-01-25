@@ -56,6 +56,10 @@
   ("\\.jbuilder\\'" . ruby-mode)
   :config (setq ruby-align-to-stmt-keywords t))
 
+(use-package robe
+  :ensure t
+  :hook (ruby-mode . robe-mode))
+
 (use-package yasnippet
   :ensure t
   :hook  ((prog-mode org-mode) . yas-minor-mode))
