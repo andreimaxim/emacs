@@ -1,5 +1,11 @@
 ;;; andreimaxim-ux.el --- UI and UX settings  -*- lexical-binding: t -*-
 
+;;; Commentary:
+
+;; Configuration that improves the default Emacs UX.
+
+;;; Code:
+
 ;;; UI tweaks
 (use-package leuven-theme
   :ensure t
