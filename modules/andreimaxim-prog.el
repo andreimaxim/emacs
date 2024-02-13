@@ -27,10 +27,6 @@
   :ensure t
   :hook (prog-mode . aggressive-indent-mode))
 
-(use-package elec-pair
-  :hook (prog-mode . electric-pair-mode)
-  :config (setq electric-pair-preserve-balance nil))
-
 ;; Automatically fix whitespaces, but only the ones we've changed.
 (use-package ws-butler
   :ensure t
