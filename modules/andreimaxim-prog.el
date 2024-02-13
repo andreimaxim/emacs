@@ -102,5 +102,11 @@
 (use-package markdown-mode
   :ensure t)
 
+(use-package dockerfile-mode
+  :ensure t)
+
+(use-package typescript-mode
+  :ensure t)
+
 (provide 'andreimaxim-prog)
 ;;; andreimaxim-prog.el ends here
