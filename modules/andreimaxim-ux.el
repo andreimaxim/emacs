@@ -7,15 +7,15 @@
 ;;; Code:
 
 ;;; UI tweaks
-(use-package leuven-theme
+(use-package doom-themes
   :ensure t
   :config
-  (load-theme 'leuven t))
+  (load-theme 'doom-tomorrow-night t))
 
-(set-face-attribute 'default nil :family "Pragmata Pro" :height 180)
-(set-face-attribute 'fixed-pitch nil :family "Pragmata Pro" :height 180)
-(set-face-attribute 'variable-pitch nil :family "Iosevka Aile" :height 160)
-(set-face-attribute 'mode-line nil :family "Pragmata Pro" :height 180)
+(set-face-attribute 'default nil :family "IosevkaSS08" :height 180)
+(set-face-attribute 'fixed-pitch nil :family "IosevkaSS08" :height 180)
+(set-face-attribute 'variable-pitch nil :family "IosevkaAile" :height 180)
+(set-face-attribute 'mode-line nil :family "IosevkaSS08" :height 180)
 
 ;; Highlight the current line
 (use-package hl-line
