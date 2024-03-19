@@ -10,7 +10,7 @@
 (use-package doom-themes
   :ensure t
   :config
-  (load-theme 'doom-tomorrow-night t))
+  (load-theme 'doom-one t))
 
 (set-face-attribute 'default nil :family "IosevkaSS08" :height 180)
 (set-face-attribute 'fixed-pitch nil :family "IosevkaSS08" :height 180)
