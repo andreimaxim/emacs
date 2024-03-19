@@ -73,7 +73,7 @@ Configure Emacs with the required features:
 ```
 
 ```shell
-./configure --with-native-compilation --with-json --with-rsvg --with-xml2 --with-pgtk
+./configure --with-native-compilation --with-json --with-rsvg --with-xml2 --with-pgtk --without-compress-install
 ```
 
 Build, using as many cores as possible:
