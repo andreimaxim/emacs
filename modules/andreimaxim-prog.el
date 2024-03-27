@@ -108,5 +108,8 @@
 (use-package typescript-mode
   :ensure t)
 
+(use-package dape
+  :ensure t)
+
 (provide 'andreimaxim-prog)
 ;;; andreimaxim-prog.el ends here
