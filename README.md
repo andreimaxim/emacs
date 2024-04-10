@@ -60,12 +60,6 @@ Make sure there aren't any artefacts left after previous compilations:
 git clean -fdx
 ```
 
-Setup the default compiler to point to gcc-10:
-
-```shell
-export CC=/usr/bin/gcc-10 CXX=/usr/bin/gcc-10
-```
-
 Configure Emacs with the required features:
 
 ```shell
@@ -73,7 +67,7 @@ Configure Emacs with the required features:
 ```
 
 ```shell
-./configure --with-native-compilation --with-json --with-rsvg --with-xml2 --with-pgtk --without-compress-install
+./configure --with-native-compilation --with-json --with-rsvg --with-xml2 --with-pgtk --without-compress-install CC=gcc-10
 ```
 
 Build, using as many cores as possible:
