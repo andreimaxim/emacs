@@ -26,10 +26,7 @@
 
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
-
 (require 'use-package)
-(use-package use-package-ensure-system-package
-  :ensure t)
 
 (add-to-list 'load-path (expand-file-name "modules" user-emacs-directory))
 
