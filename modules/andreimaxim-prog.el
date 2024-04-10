@@ -41,10 +41,9 @@
 
 (use-package tree-sitter
   :ensure t
+  :config (use-package tree-sitter-langs
+            :ensure t)
   :hook ((css-mode html-mode javascript-mode json-mode ruby-mode typescrypt-mode) . tree-sitter-hl-mode))
-
-(use-package tree-sitter-langs
-  :ensure t)
 
 (use-package ruby-mode
   :ensure nil
