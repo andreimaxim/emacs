@@ -62,6 +62,9 @@
 (use-package yasnippet-snippets
   :ensure t)
 
+(use-package emmet-mode
+  :ensure t)
+
 (use-package devdocs
   :ensure t
   :config
