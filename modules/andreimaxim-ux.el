@@ -10,46 +10,7 @@
 (use-package doom-themes
   :ensure t
   :config
-  (load-theme 'doom-tokyo-night t)
-  (custom-set-faces
-   ;; Keywords, including control structures, tags in HTML, and special forms in Clojure
-   '(tree-sitter-hl-face:keyword ((t (:foreground "#bb9af7"))))
-
-   ;; Functions and methods
-   '(tree-sitter-hl-face:function ((t (:foreground "#7aa2f7"))))
-   '(tree-sitter-hl-face:method ((t (:foreground "#7aa2f7"))))
-   '(tree-sitter-hl-face:function.call ((t (:foreground "#7aa2f7"))))
-   '(tree-sitter-hl-face:method.call ((t (:foreground "#7aa2f7"))))
-
-   ;; Variables, parameters, and properties
-   '(tree-sitter-hl-face:variable ((t (:foreground "#c0caf5"))))
-   '(tree-sitter-hl-face:variable.parameter ((t (:foreground "#e0af68"))))
-   '(tree-sitter-hl-face:property ((t (:foreground "#7dcfff"))))
-
-   ;; Strings and symbols
-   '(tree-sitter-hl-face:string ((t (:foreground "#9ece6a"))))
-   '(tree-sitter-hl-face:symbol ((t (:foreground "#9ece6a"))))
-
-   ;; Comments
-   '(tree-sitter-hl-face:comment ((t (:foreground "#565f89"))))
-
-   ;; Types and classes
-   '(tree-sitter-hl-face:type ((t (:foreground "#c0caf5"))))
-   '(tree-sitter-hl-face:class ((t (:foreground "#c0caf5"))))
-   '(tree-sitter-hl-face:constructor ((t (:foreground "#7aa2f7"))))
-
-   ;; Constants
-   '(tree-sitter-hl-face:constant ((t (:foreground "#ff9e64"))))
-   '(tree-sitter-hl-face:constant.builtin ((t (:foreground "#ff9e64"))))
-
-   ;; Numbers, booleans, and nil
-   '(tree-sitter-hl-face:number ((t (:foreground "#ff9e64"))))
-   '(tree-sitter-hl-face:boolean ((t (:foreground "#ff9e64"))))
-   '(tree-sitter-hl-face:nil ((t (:foreground "#ff9e64"))))
-
-   ;; Punctuation and operators
-   '(tree-sitter-hl-face:punctuation ((t (:foreground "#a9b1d6"))))
-   '(tree-sitter-hl-face:operator ((t (:foreground "#a9b1d6"))))))
+  (load-theme 'doom-one t))
 
 (set-face-attribute 'default nil :family "IosevkaSS08" :height 180)
 (set-face-attribute 'fixed-pitch nil :family "IosevkaSS08" :height 180)
